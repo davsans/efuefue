@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Juego de las sumas</title>
+	<style>
+		.mar{
+			position: absolute;
+            border: black solid 5px;
+            width: 325px;
+            height: 600px;
+            left: 500px;
+            top: 30px;
+		}
+		.mar2{
+			position: absolute;
+            border: black solid 2px;
+            width: 300px;
+            height: 540px;
+            left: 10px;
+            top: 50px;
+		}
+		.Tit{
+			position: absolute;
+			top: 70px;
+			left: 60px;
+			font-size: 30px;
+		}
+		.press{
+			position: absolute;
+			top: 150px;
+			left: 80px;
+			font-size: 18px;
+		}
+		.ve{
+			position: absolute;
+			background: white;
+			top: 450px;
+			width: 100px;
+			height: 100px;
+			left: 20px;
+			font-size: 30px;
+			text-align:center;
+			cursor: pointer;
+		}
+		.fa{
+			position: absolute;
+			background: white;
+			top: 450px;
+			width: 100px;
+			height: 100px;
+			left: 200px;
+			font-size: 30px;
+			text-align:center;
+			cursor: pointer;
+		}
+		.In{
+			position: absolute;
+			width: 200px;
+			height: 30px;
+			left: 55px;
+			top: 5px;
+			border: white 2px solid;
+			text-align: center;
+			font-size: 15px;
+		}
+		.Te{
+	        top: 300px;
+			position: absolute;
+            left: 150px;
+            font-size: 20px;
+		}
+	</style>
+</head>
+<body onkeypress="presi()">
+<div class="mar">
+<div class="mar2"></div>
+<div class="Tit" id="preg">JUEGO DE LAS SUMAS</div>
+<div class="press" id="punc">press ENTER</div>
+<div class="In" id="iniciar" onclick="inicio()"></div>
+<div class="Te" id="tempo"></div>
+<div class="fa" id="fal" onclick="falso()"></div>
+<div class="ve" id="ver" onclick="verdadero()"></div>
+</div>
+<script>
+    m=[1,0,0,1,1]
+    n=0
+    q=10
+	x=Math.floor((Math.random() * (21-1))+1)
+	y=Math.floor((Math.random() * (21-1))+1)
+	z=x+y
+
+	a=Math.floor((Math.random() * (21-1))+1)
+	b=Math.floor((Math.random() * (21-1))+1)
+	c=a-b
+
+	D=Math.floor((Math.random() * (21-1))+1)
+	E=Math.floor((Math.random() * (21-1))+1)
+	F=D-E
+
+	g=Math.floor((Math.random() * (21-1))+1)
+	h=Math.floor((Math.random() * (21-1))+1)
+	i=g+h
+
+	J=Math.floor((Math.random() * (21-1))+1)
+	K=Math.floor((Math.random() * (21-1))+1)
+	L=J+K
+
+	P=0
+    pr=1
+	function presi(){
+		if (event.code=="Enter") {
+        preg.innerHTML=""
+        punc.innerHTML=""
+        ver.innerHTML="V"
+        fal.innerHTML="F"
+        ver.style.backgroundColor="lime"
+        fal.style.backgroundColor="crimson"
+        iniciar.style.borderColor="black"
+        iniciar.innerHTML="Iniciar"
+		}
+	}
+	function inicio() {
+		iniciar.style.borderColor="white"
+		iniciar.innerHTML="pulsa V o F"
+	if (pr==1) {
+		preg.innerHTML= x+"+"+y+"="+z
+		o=setInterval (dis,1000)	
+	}
+	if (pr==2) {
+		preg.innerHTML= a+"+"+b+"="+c
+		o=setInterval (dis,1000)
+	}
+	if (pr==3) {
+		preg.innerHTML= D+"+"+E+"="+F
+		o=setInterval (dis,1000)
+	}
+	if (pr==4) {
+		preg.innerHTML= g+"+"+h+"="+i
+		o=setInterval (dis,1000)
+	}
+	if (pr==5) {
+		preg.innerHTML= J+"+"+K+"="+L
+		o=setInterval (dis,1000)
+	}
+	if (pr>=6) {
+		punc.innerHTML="Has conseguido "+P+" puntos"
+        preg.innerHTML=""
+	}
+}
+function verdadero(){
+    if (m[n]==1) {
+    	P++
+    	n++
+    	clearInterval(o)
+    	q=10
+    }
+    else{
+    	n++
+    	clearInterval(o)
+    	q=10
+    }
+    pr++
+    inicio()
+}
+function falso(){
+	if (m[n]==0) {
+		P++
+		n++
+		clearInterval(o)
+		q=10
+	}
+	else{
+		n++
+		clearInterval(o)
+		q=10
+	}
+	pr++
+	inicio()
+}
+function dis(){
+	if (q<=10) {
+      tempo.innerHTML=
+      q--
+	}
+	if (q==0) {
+		clearInterval(o)
+		pr++
+		inicio()
+		q=10
+	}
+}
+</script>
+</body>
+</html>
